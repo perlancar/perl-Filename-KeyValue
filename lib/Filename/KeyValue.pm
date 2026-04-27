@@ -157,6 +157,8 @@ sub parse_keyvalue_filename {
     $opts->{array_value}  = delete($args{array_value}) // 0;
     $opts->{decode_value} = delete($args{decode_value}) // 1;
 
+    $filename =~ s!/+\z!!;
+
     length($filename) or return [400, "Filename cannot be empty"];
     $filename =~ s/\.(\w+)\z// and $res->{ext} = $1;
 
